@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
 import json
@@ -9,9 +9,10 @@ import google.generativeai as genai
 import requests
 from dotenv import load_dotenv
 
-app = Flask(__name__)
-CORS(app)  #enable CORS for frontend communication
+app = Flask(__name__, static_folder='.')
+CORS(app)  # Enable CORS for frontend communication
 
+# Load environment variables
 load_dotenv()
 
 class TextReconstructionService:
@@ -100,6 +101,11 @@ class TextReconstructionService:
 # Initialize service
 service = TextReconstructionService()
 
+@app.route('/')
+def index():
+    """Serve the main HTML page."""
+    return send_from_directory('.', 'index.html')
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Health check endpoint."""
@@ -140,7 +146,8 @@ def reconstruct_text():
         }), 500
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5001))
     print("🚀 Starting Text Reconstruction API Server...")
-    print("📡 Server running on http://localhost:5001")
+    print(f"📡 Server running on port {port}")
     print("✨ Ready to process requests!")
-    app.run(debug=True, port=5001, host='127.0.0.1')
+    app.run(host='0.0.0.0', port=port, debug=False)
