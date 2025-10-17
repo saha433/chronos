@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #89CFF0 0%, #FFB6C1 25%, #FFE4B5 50%, #98FB98 75%, #DDA0DD 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 0.6s ease;
+        }
+
+        .logo {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%);
+            padding: 15px 35px;
+            border-radius: 50px;
+            border: 2px solid #000;
+            box-shadow: 6px 6px 0px #000;
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #FFF;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+        }
+
+        .main-card {
+            background: #F5F5DC;
+            border: 2px solid #000;
+            box-shadow: 6px 6px 0px #000;
+            padding: 40px;
+            animation: slideUp 0.6s ease;
+            position: relative;
+        }
+
+        .card-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFB6C1;
+            border: 2px solid #000;
+            border-radius: 50%;
+        }
+
+        .corner-tl { top: -10px; left: -10px; }
+        .corner-tr { top: -10px; right: -10px; }
+        .corner-bl { bottom: -10px; left: -10px; }
+        .corner-br { bottom: -10px; right: -10px; }
+
+        .input-section {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.05rem;
+            border: 3px solid #000;
+            resize: vertical;
+            font-family: 'Space Grotesk', monospace;
+            background: #FFF;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+        }
+
+        .example-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #FFF9E6;
+            border: 2px solid #000;
+        }
+
+        .example-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .example-tag {
+            background: linear-gradient(135deg, #98FB98 0%, #7FD8BE 100%);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 3px solid #000;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .example-tag:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .example-tag:active {
+            transform: translate(0, 0);
+            box-shadow: 2px 2px 0px #000;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border: 2px solid #000;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e8d35a 0%, #FFA500 100%);
+            color: #000;
+            flex: 1;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #000;
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: translate(0, 0);
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%);
+            color: #000;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .btn-secondary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #000;
+        }
+
+        .btn-secondary:active {
+            transform: translate(0, 0);
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 35px;
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+            border-radius: 15px;
+            border: 4px solid #000;
+            margin-bottom: 25px;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #000;
+            border-top: 5px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #000;
+        }
+
+        .results-section {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-card {
+            background: #FFF;
+            border: 4px solid #000;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 6px 6px 0px #000;
+            position: relative;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 40px;
+            height: 16px;
+            background: #FFD700;
+            border: 3px solid #000;
+            border-radius: 20px;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .sources-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .source-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 20px;
+            border: 3px solid #000;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .source-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000;
+        }
+
+        .source-number {
+            display: inline-block;
+            background: #FFD700;
+            border: 3px solid #000;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 29px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .source-title {
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .source-link {
+            color: #2196F3;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 12px;
+            word-break: break-all;
+            font-weight: 600;
+            border-bottom: 2px solid #2196F3;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .source-link:hover {
+            color: #1565C0;
+            border-bottom-color: #1565C0;
+        }
+
+        .source-snippet {
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            border: 4px solid #000;
+            padding: 20px;
+            color: #FFF;
+            margin-bottom: 25px;
+            font-weight: 600;
+            box-shadow: 5px 5px 0px #000;
+            font-size: 1.05rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .main-card {
+                padding: 25px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            const [inputText, setInputText] = useState('');
+            const [loading, setLoading] = useState(false);
+            const [results, setResults] = useState(null);
+            const [error, setError] = useState(null);
+
+            const examples = [
+                "lol that was epic fail brb",
+                "omg nvm ttyl",
+                "ik rn smh tbh",
+                "fwiw imo afaik"
+            ];
+
+            const handleExample = (example) => {
+                setInputText(example);
+                setResults(null);
+                setError(null);
+            };
+
+            const handleSubmit = async () => {
+                if (!inputText.trim()) {
+                    setError('Please enter some text to reconstruct');
+                    return;
+                }
+
+                setLoading(true);
+                setError(null);
+                setResults(null);
+
+                try {
+                    const response = await fetch('http://127.0.0.1:5001/api/reconstruct', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ text: inputText }),
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        setResults(data);
+                    } else {
+                        setError(data.error || 'An error occurred');
+                    }
+                } catch (err) {
+                    setError('Failed to connect to the server. Make sure the Flask backend is running on port 5001.');
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const handleClear = () => {
+                setInputText('');
+                setResults(null);
+                setError(null);
+            };
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <div className="logo">
+                            <h1>CHRONOS</h1>
+                        </div>
+                        <p className="tagline">The AI Archeologist</p>
+                    </div>
+
+                    <div className="main-card">
+                        <div className="card-corner corner-tl"></div>
+                        <div className="card-corner corner-tr"></div>
+                        <div className="card-corner corner-bl"></div>
+                        <div className="card-corner corner-br"></div>
+
+                        <div className="input-section">
+                            <label className="input-label">Enter Your Text</label>
+                            <textarea
+                                className="text-input"
+                                rows="5"
+                                placeholder="Type or paste text with slang, abbreviations, or unclear expressions..."
+                                value={inputText}
+                                onChange={(e) => setInputText(e.target.value)}
+                            />
+                            <div className="example-section">
+                                <span className="example-label">Try These Examples:</span>
+                                <div className="example-tags">
+                                    {examples.map((example, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="example-tag"
+                                            onClick={() => handleExample(example)}
+                                        >
+                                            {example}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="button-container">
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleSubmit}
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <>
+                                        <div className="spinner" style={{width: '25px', height: '25px', border: '3px solid #000', borderTop: '3px solid #FFD700'}}></div>
+                                        Processing...
+                                    </>
+                                ) : (
+                                    <>
+                                        Reconstruct
+                                    </>
+                                )}
+                            </button>
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleClear}
+                            >
+                                🔄 Clear
+                            </button>
+                        </div>
+
+                        {error && (
+                            <div className="error-message">
+                                ⚠️ {error}
+                            </div>
+                        )}
+
+                        {loading && (
+                            <div className="loading">
+                                <div className="spinner"></div>
+                                <div>
+                                    <div className="loading-text">Processing your text...</div>
+                                    <div style={{fontSize: '0.95rem', color: '#000', fontWeight: '500', marginTop: '5px'}}>
+                                        AI is working its magic
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {results && (
+                            <div className="results-section">
+                                <div className="result-card">
+                                    <div className="result-title">Original Text</div>
+                                    <div className="result-content">{results.original_text}</div>
+                                </div>
+
+                                <div className="result-card">
+                                    <div className="result-title"> Reconstructed Text</div>
+                                    <div className="result-content">{results.reconstructed_text}</div>
+                                </div>
+
+                                {results.sources && results.sources.length > 0 && (
+                                    <div className="result-card">
+                                        <div className="result-title">Contextual Sources ({results.sources.length})</div>
+                                        <div className="sources-grid">
+                                            {results.sources.map((source, idx) => (
+                                                <div key={idx} className="source-card">
+                                                    <div className="source-title">
+                                                        <span className="source-number">{idx + 1}</span>
+                                                        {source.title}
+                                                    </div>
+                                                    <a
+                                                        href={source.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="source-link"
+                                                    >
+                                                        {source.link}
+                                                    </a>
+                                                    <div className="source-snippet">{source.snippet}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="footer">
+                        <p> Built with &lt;3 for AI Student Of The Year Hackathon | Organized by MU AI Hub </p>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
