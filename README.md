@@ -35,8 +35,9 @@ Follow these steps to set up and run the project on a new machine.
 Open your terminal and run the following command to clone the project:
 
 ```bash
-git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
-cd your-repository-name
+git clone https://github.com/saha433/chronos.git
+ls chronos
+cd chronos
 ```
 
 ## 2. Install Dependencies
