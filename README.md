@@ -1,7 +1,24 @@
 # Project Chronos: The AI Archeologist
 
-**Student Name(s):** [Your Name(s) Here]
-**Student ID(s):** [Your ID(s) Here]
+**Student Name(s):** Sahasri Gundapuneedi
+**Student ID(s):** SE23UCAM019
+
+
+**Student Name(s):** Chirala Mohan Krishna
+**Student ID(s):** SE23UCAM031
+
+
+**Student Name(s):** Shrikhar Pilla
+**Student ID(s):** SE23UARI092
+
+
+**Student Name(s):** Shaik Mohammed Fazal
+**Student ID(s):** SE23UECM051
+
+
+**Student Name(s):** Gatri Reddy
+**Student ID(s):** SE23UARI109
+
 
 ## Project Description
 
@@ -9,7 +26,7 @@ Project Chronos is a full-stack web application that functions as an "AI Archeol
 
 ---
 
-## Setup Instructions (Local)
+## Setup Guide (Local)
 
 Follow these steps to set up and run the project on a new machine.
 
@@ -45,6 +62,59 @@ GOOGLE_SEARCH_API_KEY=your_google_search_api_key_here
 GOOGLE_SEARCH_ENGINE_ID=your_google_search_engine_id_here
 ```
 
+## How to Get Your API Keys
+
+You need to generate three unique keys from Google's services.
+
+### Step A: Get `GEMINI_API_KEY`
+
+1.  Go to **Google AI Studio**.
+2.  Sign in with your Google account.
+3.  Click on **"Get API key"** in the top-left menu.
+4.  Click **"Create API key in new project"** (or select an existing one).
+5.  Your key will be generated. Copy this key and paste it into your `.env` file.
+
+### Step B: Get `Google Search_API_KEY`
+
+1.  Go to the **Google Cloud Console**.
+2.  Select a project or create a new one.
+3.  In the search bar, type **"Custom Search API"** and select it.
+4.  Click **"Enable"** to activate the API for your project.
+5.  Once enabled, go to the navigation menu (☰) → **"APIs & Services"** → **"Credentials"**.
+6.  Click **"+ CREATE CREDENTIALS"** at the top and select **"API key"**.
+7.  Your key will be created. Copy this key and paste it into your `.env` file.
+    * **Important:** For security, click "Edit API key" and under "API restrictions," select "Restrict key" and choose the **"Custom Search API"**.
+
+### Step C: Get `Google Search_ENGINE_ID`
+
+1.  Go to the **Programmable Search Engine** control panel.
+2.  Click **"Add"** to create a new search engine.
+3.  In the "What to search?" section, select the option to **"Search the entire web"**.
+4.  Give your search engine a name (e.g., "Chronos Search").
+5.  Click **"Create"**.
+6.  Once created, go to the **"Overview"** page for your new search engine.
+7.  Find the **"Search engine ID"** and click the **"Copy"** button.
+8.  Paste this ID into your `.env` file.
+
+### 3. Run the Application
+```bash
+/usr/bin/python3 text_reconstruction_app.py
+```
+
+## File Structure
+
+```
+text-reconstruction-app/
+├── text_reconstruction_app.py    # Main application
+├── requirements.txt              # Python dependencies
+├── .env                         # API keys (configured)
+├── .env.example                 # API keys template
+├── README.md                    # This documentation
+├── demo.py                      # Demo script
+├── test_app.py                  # Test script
+└── text-reconstruction-app.code-workspace  # VS Code workspace
+```
+
 ## Usage Guide (Local)
 
 This is a web application with a separate backend and frontend. You must run the backend server first, then open the frontend in your browser.
@@ -54,20 +124,11 @@ In your terminal, run the following command to start the Flask server. It is con
 ```
 flask run --port 5001
 ```
-You should see output indicating the server is running, such as: * Running on http://127.0.0.1:5001 *
+You should see output indicating the server is running, such as: Running on http://127.0.0.1:5001 
 
 2. Open the Frontend
 Once the server is running, open the index.html file directly in your web browser.
-
-You can do this by:
-
-- Double-clicking the index.html file in your file explorer.
-
-- Right-clicking it in VS Code and selecting "Open with Live Server" (if you have the extension).
-
-- Typing the file path into your browser's address bar (e.g., file:///path/to/your/project/index.html).
-
-  The web page will load, and you can now enter text into the textbox and click "Reconstruct" to interact with your local backend.
+The web page will load, and you can now enter text into the textbox and click "Reconstruct" to interact with your local backend.
 
 **Input**: `"lol, that was epic fail. brb"`
 
@@ -92,56 +153,6 @@ You can do this by:
    2. Internet Slang Dictionary - LOL, BRB
       Link: https://www.internetslang.com/
       Summary: Comprehensive dictionary of internet slang including LOL, BRB...
-```
-
-## Quick Start
-
-### Option 1: VS Code (Recommended)
-1. Open VS Code
-2. File → Open Folder → Select this `text-reconstruction-app` folder
-3. Open the integrated terminal (Terminal → New Terminal)
-4. Run: `/usr/bin/python3 text_reconstruction_app.py`
-
-### Option 2: Command Line
-1. Navigate to the project folder:
-   ```bash
-   cd text-reconstruction-app
-   ```
-2. Run the application:
-   ```bash
-   /usr/bin/python3 text_reconstruction_app.py
-   ```
-
-## Setup Instructions
-
-### 1. Install Dependencies
-```bash
-pip3 install -r requirements.txt
-```
-
-### 2. Configure API Keys
-The `.env` file is already configured with your API keys:
-- ✅ Google Gemini API Key
-- ✅ Google Custom Search API Key  
-- ✅ Google Custom Search Engine ID
-
-### 3. Run the Application
-```bash
-/usr/bin/python3 text_reconstruction_app.py
-```
-
-## File Structure
-
-```
-text-reconstruction-app/
-├── text_reconstruction_app.py    # Main application
-├── requirements.txt              # Python dependencies
-├── .env                         # API keys (configured)
-├── .env.example                 # API keys template
-├── README.md                    # This documentation
-├── demo.py                      # Demo script
-├── test_app.py                  # Test script
-└── text-reconstruction-app.code-workspace  # VS Code workspace
 ```
 
 ## API Usage and Costs
