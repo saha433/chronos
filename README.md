@@ -115,6 +115,10 @@ text-reconstruction-app/
 ├── test_app.py                  # Test script
 └── text-reconstruction-app.code-workspace  # VS Code workspace
 ```
+![Chronos Webpage](1.png)
+![Chronos Webpage](2.png)
+![Chronos Webpage](3.png)
+
 
 ## Usage Guide 
 
