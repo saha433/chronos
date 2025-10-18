@@ -1,17 +1,73 @@
-# Chronos - The AI Archeologist
+# Project Chronos: The AI Archeologist
 
-An automated text reconstruction application that uses AI and web search to expand slang, explain context, and provide relevant sources.
+**Student Name(s):** [Your Name(s) Here]
+**Student ID(s):** [Your ID(s) Here]
 
-## Features
+## Project Description
 
-This application performs a fully automated four-step process:
+Project Chronos is a full-stack web application that functions as an "AI Archeologist." It's purpose is to take fragmented text, slang, abbreviations, or unclear expressions and use the Google Gemini AI to reconstruct them into clear, coherent language. The application then fetches relevant contextual sources from the web to provide a complete understanding of the original text's meaning and origin.
 
-1. **Get Input**: Accepts text with slang, abbreviations, and incomplete sentences
-2. **Reconstruct with AI**: Uses Google Gemini API to expand slang and explain context
-3. **Find Sources Online**: Performs web search to find relevant contextual sources
-4. **Generate Report**: Creates a structured "Reconstruction Report" with all results
+---
 
-## Example
+## Setup Instructions (Local)
+
+Follow these steps to set up and run the project on a new machine.
+
+### 1. Clone the Repository
+
+Open your terminal and run the following command to clone the project:
+
+```bash
+git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
+cd your-repository-name
+```
+
+## 2. Install Dependencies
+
+This project uses Python. You must install the libraries listed in requirements.txt.
+```
+pip install -r requirements.txt
+```
+
+## 3. Configure API Keys
+
+The application requires three API keys to function. You must create a .env file in the root of the project directory.
+
+1. Create the file:
+```
+touch .env
+```
+
+2. Open the .env file and add your keys in the following format:
+```
+GEMINI_API_KEY=your_gemini_api_key_here
+GOOGLE_SEARCH_API_KEY=your_google_search_api_key_here
+GOOGLE_SEARCH_ENGINE_ID=your_google_search_engine_id_here
+```
+
+## Usage Guide (Local)
+
+This is a web application with a separate backend and frontend. You must run the backend server first, then open the frontend in your browser.
+
+1. Run the Backend Server
+In your terminal, run the following command to start the Flask server. It is configured to run on port 5001.
+```
+flask run --port 5001
+```
+You should see output indicating the server is running, such as: * Running on http://127.0.0.1:5001 *
+
+2. Open the Frontend
+Once the server is running, open the index.html file directly in your web browser.
+
+You can do this by:
+
+- Double-clicking the index.html file in your file explorer.
+
+- Right-clicking it in VS Code and selecting "Open with Live Server" (if you have the extension).
+
+- Typing the file path into your browser's address bar (e.g., file:///path/to/your/project/index.html).
+
+  The web page will load, and you can now enter text into the textbox and click "Reconstruct" to interact with your local backend.
 
 **Input**: `"lol, that was epic fail. brb"`
 
@@ -88,52 +144,6 @@ text-reconstruction-app/
 └── text-reconstruction-app.code-workspace  # VS Code workspace
 ```
 
-## Usage
-
-1. Run the application
-2. Enter your text when prompted (e.g., "lol, that was epic fail. brb")
-3. The application will:
-   - Process the text with AI
-   - Search for relevant sources
-   - Generate a comprehensive report
-4. Optionally save the report to a file
-
-## How It Works
-
-### Step 1: Input Processing
-- Validates and accepts user input text
-- Handles various formats and lengths
-
-### Step 2: AI Reconstruction
-- Sends text to Google Gemini API
-- Uses a specialized prompt to:
-  - Expand slang and abbreviations
-  - Explain colloquial expressions
-  - Complete incomplete sentences
-  - Maintain original tone and intent
-
-### Step 3: Web Search
-- Extracts key terms from reconstructed text
-- Performs targeted web search using Google Custom Search API
-- Retrieves top 5 most relevant sources
-
-### Step 4: Report Generation
-- Combines all results into a structured report
-- Formats output for easy reading
-- Includes timestamps and metadata
-
-## VS Code Integration
-
-This project includes a VS Code workspace file (`text-reconstruction-app.code-workspace`) with:
-- Python interpreter configured to `/usr/bin/python3`
-- Recommended Python extensions
-- Proper file exclusions for Python cache files
-
-To open in VS Code:
-1. Open VS Code
-2. File → Open Workspace from File
-3. Select `text-reconstruction-app.code-workspace`
-
 ## API Usage and Costs
 
 ### Google Gemini API
@@ -189,11 +199,3 @@ If you encounter issues:
 2. Verify your API keys are correct and active
 3. Ensure all dependencies are installed
 4. Check your internet connection
-
-## License
-
-This project is open source and available under the MIT License.
-# chronos
-# chronos
-# chronos
-# chronos
