@@ -8,18 +8,6 @@
 **Student ID:** SE23UCAM031
 
 
-**Student Name:** Shrikhar Pilla
-**Student ID:** SE23UARI092
-
-
-**Student Name:** Shaik Mohammed Fazal
-**Student ID:** SE23UECM051
-
-
-**Student Name:** Gatri Reddy
-**Student ID:** SE23UARI109
-
-
 ## Project Description
 
 Project Chronos is a full-stack web application that functions as an "AI Archeologist." It's purpose is to take fragmented text, slang, abbreviations, or unclear expressions and use the Google Gemini AI to reconstruct them into clear, coherent language. The application then fetches relevant contextual sources from the web to provide a complete understanding of the original text's meaning and origin.
