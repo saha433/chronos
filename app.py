@@ -147,7 +147,4 @@ def reconstruct_text():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))
-    print("🚀 Starting Text Reconstruction API Server...")
-    print(f"📡 Server running on port {port}")
-    print("✨ Ready to process requests!")
     app.run(host='0.0.0.0', port=port, debug=False)
