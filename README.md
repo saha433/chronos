@@ -1,23 +1,23 @@
 # Project Chronos: The AI Archeologist
 
-**Student Name(s):** Sahasri Gundapuneedi
-**Student ID(s):** SE23UCAM019
+**Student Name:** Sahasri Gundapuneedi
+**Student ID:** SE23UCAM019
 
 
-**Student Name(s):** Chirala Mohan Krishna
-**Student ID(s):** SE23UCAM031
+**Student Name:** Chirala Mohan Krishna
+**Student ID:** SE23UCAM031
 
 
-**Student Name(s):** Shrikhar Pilla
-**Student ID(s):** SE23UARI092
+**Student Name:** Shrikhar Pilla
+**Student ID:** SE23UARI092
 
 
-**Student Name(s):** Shaik Mohammed Fazal
-**Student ID(s):** SE23UECM051
+**Student Name:** Shaik Mohammed Fazal
+**Student ID:** SE23UECM051
 
 
-**Student Name(s):** Gatri Reddy
-**Student ID(s):** SE23UARI109
+**Student Name:** Gatri Reddy
+**Student ID:** SE23UARI109
 
 
 ## Project Description
@@ -26,7 +26,7 @@ Project Chronos is a full-stack web application that functions as an "AI Archeol
 
 ---
 
-## Setup Guide (Local)
+## Setup Instructions 
 
 Follow these steps to set up and run the project on a new machine.
 
@@ -115,7 +115,7 @@ text-reconstruction-app/
 └── text-reconstruction-app.code-workspace  # VS Code workspace
 ```
 
-## Usage Guide (Local)
+## Usage Guide 
 
 This is a web application with a separate backend and frontend. You must run the backend server first, then open the frontend in your browser.
 
