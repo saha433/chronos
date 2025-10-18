@@ -1,4 +1,4 @@
-# Text Reconstruction Application
+# Chronos - The AI Archeologist
 
 An automated text reconstruction application that uses AI and web search to expand slang, explain context, and provide relevant sources.
 
