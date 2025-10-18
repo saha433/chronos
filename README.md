@@ -109,9 +109,8 @@ text-reconstruction-app/
 ├── text_reconstruction_app.py    # Main application
 ├── requirements.txt              # Python dependencies
 ├── .env                         # API keys (configured)
-├── .env.example                 # API keys template
+├── procfile                     # For render deployement
 ├── README.md                    # This documentation
-├── demo.py                      # Demo script
 ├── test_app.py                  # Test script
 └── text-reconstruction-app.code-workspace  # VS Code workspace
 ```
